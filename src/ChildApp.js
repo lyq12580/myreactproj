@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 class ChildApp extends Component {
     constructor(props) {
@@ -6,9 +7,9 @@ class ChildApp extends Component {
         this.deleteItemChild = this.deleteItemChild.bind(this)
     }
     render() {
-        const {content} = this.props;
+        const {content, test} = this.props;
         return (
-        <div onClick={this.deleteItemChild}>{content}</div>
+        <div onClick={this.deleteItemChild}>{test} - {content}</div>
          )  
     }
     deleteItemChild() {
@@ -16,4 +17,14 @@ class ChildApp extends Component {
         deleteItem(index);
     }
 }
+ChildApp.propTypes = {
+    test: PropTypes.string.isRequired,
+    content: PropTypes.string,
+    deleteItem: PropTypes.func,
+    index: PropTypes.number
+}
+ChildApp.defaultProps = {
+    test: 'hello world'
+}
+
 export default ChildApp;

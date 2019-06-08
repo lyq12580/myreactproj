@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
-import ChildApp from './ChildApp'
+import ChildApp from './ChildApp';
+import Test from './Test';
 import './style.css'
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class App extends React.Component {
     this.handleItemDelete = this.handleItemDelete.bind(this);
   }
   render () {
+    // 当组件的state和props改变时，render函数会重新执行
     return (
     <Fragment>
       <div>
@@ -28,6 +30,7 @@ class App extends React.Component {
       <ul>
         {this.getTodoItem()}
       </ul>
+      <Test content={this.state.inputvalue}/>
     </Fragment>
    )
   }
