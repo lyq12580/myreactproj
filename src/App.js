@@ -2,16 +2,19 @@ import React, {Fragment} from 'react';
 import ChildApp from './ChildApp';
 import Test from './Test';
 import './style.css'
+// import axios from 'axios'
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       inputvalue: '',
-      list: []
+      list: [],
+      show:true
     }
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleBtnClick = this.handleBtnClick.bind(this);
     this.handleItemDelete = this.handleItemDelete.bind(this);
+    this.toggle = this.toggle.bind(this)
   }
   render () {
     // 当组件的state和props改变时，render函数会重新执行
@@ -31,9 +34,24 @@ class App extends React.Component {
         {this.getTodoItem()}
       </ul>
       <Test content={this.state.inputvalue}/>
+      <div className={this.state.show? 'show' : 'hide'}>hello</div>
+      <button onClick={this.toggle}>toggle</button>
     </Fragment>
    )
   }
+    // ajax请求数据
+  //   componentDidMount() {
+  //     axios.get('/api/list').then((res) => {
+  //       console.log(res)
+  //         this.setState(() => ({
+  //             list: [...res.data]
+  //         }))
+  //        alert('success')
+  //     }).catch(() => {
+  //         alert('error')
+  //     })
+  //  }
+   
   getTodoItem() {
     return  this.state.list.map((item, index) => {
       return (
@@ -72,6 +90,13 @@ class App extends React.Component {
       return { list }
       
     })
+  }
+  toggle() {
+    this.setState(() => (
+      {
+        show: this.state.show? false : true
+      }
+    ))
   }
 }
 export default App;
